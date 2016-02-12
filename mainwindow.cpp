@@ -75,3 +75,9 @@ void MainWindow::on_actionZapisz_triggered()
     QString fileName = QFileDialog::getSaveFileName();
     image.save(fileName);
 }
+
+void MainWindow::resizeEvent(QResizeEvent * event)
+{
+    image = original_image.scaled(ui->label->width(), ui->label->height());
+    ui->label->setPixmap(QPixmap::fromImage(image));
+}

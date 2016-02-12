@@ -42,6 +42,8 @@ private slots:
 
     void on_actionZapisz_triggered();
 
+    void resizeEvent(QResizeEvent * event);
+
 private:
     Ui::MainWindow *ui;
     Engine *engine;
