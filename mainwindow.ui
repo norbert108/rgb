@@ -24,13 +24,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>wybierz obraz</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </item>
    </layout>
@@ -53,6 +46,14 @@
     <addaction name="separator"/>
     <addaction name="actionOryginalny"/>
    </widget>
+   <widget class="QMenu" name="menuObraz">
+    <property name="title">
+     <string>Obraz</string>
+    </property>
+    <addaction name="actionOtw_rz"/>
+    <addaction name="actionZapisz"/>
+   </widget>
+   <addaction name="menuObraz"/>
    <addaction name="menuKolor"/>
   </widget>
   <action name="actionOdcienie_szaro_ci">
@@ -73,6 +74,16 @@
   <action name="actionOdwr_cone">
    <property name="text">
     <string>Odwrócone</string>
+   </property>
+  </action>
+  <action name="actionOtw_rz">
+   <property name="text">
+    <string>Otwórz</string>
+   </property>
+  </action>
+  <action name="actionZapisz">
+   <property name="text">
+    <string>Zapisz</string>
    </property>
   </action>
  </widget>

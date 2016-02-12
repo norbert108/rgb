@@ -35,15 +35,6 @@ void MainWindow::resizeImage(int wys, int szer)
 //    ui->label->setPixmap(QPixmap::fromImage(img));
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Wybierz obraz do wczytania."), "",  "Supported files (*.png)", 0, 0);
-    image = QImage(fileName);
-    original_image = image.copy();
-
-    ui->label->setPixmap(QPixmap::fromImage(image));
-}
-
 void MainWindow::on_actionOdcienie_szaro_ci_triggered()
 {
     for (int i = 0; i < image.width(); i++)
@@ -68,4 +59,19 @@ void MainWindow::on_actionOdwr_cone_triggered()
 {
     image.invertPixels();
     ui->label->setPixmap(QPixmap::fromImage(image));
+}
+
+void MainWindow::on_actionOtw_rz_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Wybierz obraz do wczytania."), "",  "Supported files (*.png)", 0, 0);
+    image = QImage(fileName);
+    original_image = image.copy();
+
+    ui->label->setPixmap(QPixmap::fromImage(image));
+}
+
+void MainWindow::on_actionZapisz_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName();
+    image.save(fileName);
 }

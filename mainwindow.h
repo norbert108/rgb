@@ -30,7 +30,6 @@ private:
     QImage original_image;
 
 private slots:
-    void on_pushButton_clicked();
     void resizeImage(int,int);
 
     void on_actionOdcienie_szaro_ci_triggered();
@@ -38,6 +37,10 @@ private slots:
     void on_actionOryginalny_triggered();
 
     void on_actionOdwr_cone_triggered();
+
+    void on_actionOtw_rz_triggered();
+
+    void on_actionZapisz_triggered();
 
 private:
     Ui::MainWindow *ui;
