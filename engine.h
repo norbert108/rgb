@@ -8,7 +8,7 @@ class Engine : public QObject
 {
     Q_OBJECT
 public:
-    explicit Engine(int wys, int szer, QObject *parent = 0);
+    explicit Engine(int height, int width, QObject *parent = 0);
     int readWysokosc();
     int readSzerokosc();
 

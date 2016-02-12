@@ -31,30 +31,41 @@ MainWindow::~MainWindow()
 
 void MainWindow::resizeImage(int wys, int szer)
 {
-    img.scaled((wys),(szer));
-    ui->label->setPixmap(QPixmap::fromImage(img));
+//    img.scaled((wys),(szer));
+//    ui->label->setPixmap(QPixmap::fromImage(img));
 }
 
 void MainWindow::on_pushButton_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                                  "/home");
-    QPixmap image(fileName);
-    pix = image;
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Wybierz obraz do wczytania."), "",  "Supported files (*.png)", 0, 0);
+    image = QImage(fileName);
+    original_image = image.copy();
 
-    QImage tmp =image.toImage();
-    img = tmp;
+    ui->label->setPixmap(QPixmap::fromImage(image));
+}
 
-    //ui->label->setPixmap(image);
-    //ui->label->setScaledContents(this); // aaaaaaaa działa
+void MainWindow::on_actionOdcienie_szaro_ci_triggered()
+{
+    for (int i = 0; i < image.width(); i++)
+    {
+        for (int j=0; j < image.height(); j++)
+        {
+            int gray = qGray(image.pixel(i, j));
+            image.setPixel(i, j, qRgb(gray, gray, gray));
+        }
+    }
 
-    QSize size = this->size();
-    //QResizeEvent size2 = this->size();
+    ui->label->setPixmap(QPixmap::fromImage(image));
+}
 
-     int wys = size.height();
-     int szer = size.width();
-     img.scaled((wys/2),(szer/2));//?
-     ui->label->setPixmap(QPixmap::fromImage(img));
+void MainWindow::on_actionOryginalny_triggered()
+{
+    image = original_image.copy();
+    ui->label->setPixmap(QPixmap::fromImage(image));
+}
 
-
+void MainWindow::on_actionOdwr_cone_triggered()
+{
+    image.invertPixels();
+    ui->label->setPixmap(QPixmap::fromImage(image));
 }
