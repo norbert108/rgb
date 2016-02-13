@@ -42,6 +42,8 @@ void MainWindow::on_actionOdwr_cone_triggered()
 void MainWindow::on_actionOtw_rz_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Wybierz obraz do wczytania."), "",  "", 0, 0);
+
+    image_filename = fileName;
     image = QImage(fileName);
     original_image = image.copy();
 
@@ -57,6 +59,6 @@ void MainWindow::on_actionOtw_rz_triggered()
 
 void MainWindow::on_actionZapisz_triggered()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, "Zapisz obraz");
+    QString fileName = QFileDialog::getSaveFileName(this, "Zapisz obraz", QDir(image_filename).absolutePath());
     image.save(fileName);
 }

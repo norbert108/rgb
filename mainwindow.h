@@ -25,6 +25,7 @@ public:
     ~MainWindow();
 
 private:
+    QString image_filename;
     QImage image;
     QImage original_image;
 
