@@ -6,33 +6,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    QSize size = this->size();
-    int h = size.height();
-    int w = size.width();
-
-    engine = new Engine(h,w,this);
-
-    connect(this,SIGNAL(iconSizeChanged(QSize)),//?
-            engine,SLOT(setRozmiar(QSize)));//?
-
-    //connect(this,SIGNAL(iconSizeChanged(QSize)),//?
-          //  engine,SLOT(setRozmiar(QSize)));//?
-
-    connect(engine,SIGNAL(zmianaRozmiaru(int,int)),
-            this,SLOT(resizeImage(int,int)));
-
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::resizeImage(int wys, int szer)
-{
-//    img.scaled((wys),(szer));
-//    ui->label->setPixmap(QPixmap::fromImage(img));
 }
 
 void MainWindow::on_actionOdcienie_szaro_ci_triggered()
@@ -63,8 +41,14 @@ void MainWindow::on_actionOdwr_cone_triggered()
 
 void MainWindow::on_actionOtw_rz_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Wybierz obraz do wczytania."), "",  "Supported files (*.png)", 0, 0);
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Wybierz obraz do wczytania."), "",  "", 0, 0);
     image = QImage(fileName);
+
+//    if(image.isNull())
+//    {
+//        return; //dialog
+//    }
+
     original_image = image.copy();
 
     ui->label->setPixmap(QPixmap::fromImage(image));
@@ -78,6 +62,5 @@ void MainWindow::on_actionZapisz_triggered()
 
 void MainWindow::resizeEvent(QResizeEvent * event)
 {
-    image = original_image.scaled(ui->label->width(), ui->label->height());
-    ui->label->setPixmap(QPixmap::fromImage(image));
+//    ui->label->setPixmap(QPixmap::fromImage(image));
 }

@@ -30,7 +30,6 @@ private:
     QImage original_image;
 
 private slots:
-    void resizeImage(int,int);
 
     void on_actionOdcienie_szaro_ci_triggered();
 
