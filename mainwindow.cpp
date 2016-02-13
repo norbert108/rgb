@@ -43,24 +43,20 @@ void MainWindow::on_actionOtw_rz_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Wybierz obraz do wczytania."), "",  "", 0, 0);
     image = QImage(fileName);
-
-//    if(image.isNull())
-//    {
-//        return; //dialog
-//    }
-
     original_image = image.copy();
+
+    if(image.isNull())
+    {
+        QMessageBox::critical(this, "Nieobsługiwany format pliku", "Wybrany plik nie zawiera obrazu w obsługiwanym formacie", NULL, NULL);
+
+        return;
+    }
 
     ui->label->setPixmap(QPixmap::fromImage(image));
 }
 
 void MainWindow::on_actionZapisz_triggered()
 {
-    QString fileName = QFileDialog::getSaveFileName();
+    QString fileName = QFileDialog::getSaveFileName(this, "Zapisz obraz");
     image.save(fileName);
-}
-
-void MainWindow::resizeEvent(QResizeEvent * event)
-{
-//    ui->label->setPixmap(QPixmap::fromImage(image));
 }

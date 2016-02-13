@@ -10,8 +10,7 @@
 #include <QCloseEvent>
 #include <QPixmap>
 #include <QResizeEvent>
-
-#include "engine.h"
+#include <QMessageBox>
 
 namespace Ui {
 class MainWindow;
@@ -41,11 +40,8 @@ private slots:
 
     void on_actionZapisz_triggered();
 
-    void resizeEvent(QResizeEvent * event);
-
 private:
     Ui::MainWindow *ui;
-    Engine *engine;
 };
 
 #endif // MAINWINDOW_H
